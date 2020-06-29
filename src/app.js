@@ -6,8 +6,6 @@ const app = express();
 const router = express.Router();
 //Rotas
 const index = require('./routes/routes');
-const driverRoute = require('./routes/driverRoute');
-const vehicleRoute = require('./routes/vehicleRoute');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));

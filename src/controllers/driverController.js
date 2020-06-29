@@ -7,7 +7,6 @@ exports.get = async (req, res) => {
         if (err) {
             return res.status(500).send('Error: ',err);
         }
-        //console.log(drivers);
         return res.json(drivers);
     });
     
@@ -27,12 +26,7 @@ exports.post = async (req, res) => {
 
     newDriver.save();
 
-    Driver.findById(newUuid, function (err) {
-        if (err) {
-            return res.status(500).send('Error: ',);
-        }
-    });
-    return res.status(201).send(`Driver created successfully!`);
+    return res.status(201).json(newDriver);
 };
 
 exports.put = async (req, res) => {
@@ -48,7 +42,7 @@ exports.put = async (req, res) => {
         driver.active = true;
         driver.modification_date = new Date();
         driver.save();
-        res.status(200).send('\nSuccessfully edited!\n');
+        res.status(200).json(driver);
     });
 };
 
@@ -57,5 +51,5 @@ exports.delete = async (req, res) => {
     driver.active = false;
     driver.modification_date = new Date();
     await driver.save();
-    res.status(200).send('\nSuccessfully deleted!\n');
+    res.status(200).json(driver);
 };

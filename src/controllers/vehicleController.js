@@ -1,5 +1,6 @@
 const { uuid } = require('uuidv4');
 var Vehicle = require('../models/Vehicle');
+var Driver = require('../models/Driver');
 const mongoose = require('mongoose');
 
 exports.get = async (req, res) => {
@@ -14,20 +15,22 @@ exports.get = async (req, res) => {
 exports.post = async (req, res) => {
     const { owner_name, plate, renavam} = req.body;
     const newUuid = uuid();
+    const driver = await Driver.findOne({name: owner_name});
+    if(!driver){
+        return res.status(404).send('Driver not found');
+    }
     const newVehicle = await Vehicle.create({
         newUuid,
         owner_name,
         plate,
-        renavam
+        renavam,
+        driver
     });
 
     newVehicle.save();
 
-    Vehicle.findById(newUuid, function (err) {
-        if (err) {
-            return res.status(500).send('Error: ',);
-        }
-    });
+    driver.vehicles.push(newVehicle);
+    driver.save();
     //return res.status(201).send(`Vechicle created successfully!`);
     return res.status(201).json(newVehicle);
 };
