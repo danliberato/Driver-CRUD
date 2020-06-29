@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 const router = express.Router();
 //Rotas
-const index = require('./routes/index');
+const index = require('./routes/routes');
 const driverRoute = require('./routes/driverRoute');
 const vehicleRoute = require('./routes/vehicleRoute');
 
@@ -20,7 +20,5 @@ let db = mongoose.connection;
 db.on(`error`, console.error.bind(console, `Error connecting to database.`));
 
 app.use('/', index);
-app.use('/drivers', driverRoute);
-app.use('/vehicles', vehicleRoute);
 
 app.listen(3000, () => console.log('Listening on port 3000'));

@@ -3,32 +3,33 @@ var Vehicle = require('../models/Vehicle');
 const mongoose = require('mongoose');
 
 exports.get = async (req, res) => {
-    await Vechicle.find(function (err,vechicles) {
+    await Vehicle.find(function (err,vehicles) {
         if (err) {
             return res.status(500).send('Error: ',err);
         }
-        return res.json(vechicles);
+        return res.json(vehicles);
     });
 };
 
 exports.post = async (req, res) => {
     const { owner_name, plate, renavam} = req.body;
     const newUuid = uuid();
-    const newVechicle = await Vechicle.create({
+    const newVehicle = await Vehicle.create({
         newUuid,
         owner_name,
         plate,
         renavam
     });
 
-    newVechicle.save();
+    newVehicle.save();
 
-    Vechicle.findById(newUuid, function (err) {
+    Vehicle.findById(newUuid, function (err) {
         if (err) {
             return res.status(500).send('Error: ',);
         }
     });
-    return res.status(201).send(`Vechicle created successfully!`);
+    //return res.status(201).send(`Vechicle created successfully!`);
+    return res.status(201).json(newVehicle);
 };
 
 exports.put = async (req, res) => {
@@ -43,7 +44,7 @@ exports.put = async (req, res) => {
         vehicle.active = true;
         vehicle.modification_date = new Date();
         vehicle.save();
-        res.status(200).send('\nSuccessfully edited!\n');
+        return res.status(201).json(vehicle);
     });
 };
 

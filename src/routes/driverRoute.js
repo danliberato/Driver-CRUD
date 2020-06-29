@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/driverController')
+const controller = require('../controllers/driverController');
 router.get('',controller.get);
 router.put('/:id',controller.put);
 router.post('/', controller.post);
