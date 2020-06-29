@@ -11,9 +11,6 @@ exports.get = async (req, res) => {
         return res.json(drivers);
     });
     
-    /* if (drivers.length > 0){
-        return res.status(404).send('No data found');
-    }*/
      
 };
 
