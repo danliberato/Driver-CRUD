@@ -1,4 +1,4 @@
 Simple REST API.
 
-NodeJS + nodemon + MongoDB
+NodeJS + Express + MongoDB 
 
