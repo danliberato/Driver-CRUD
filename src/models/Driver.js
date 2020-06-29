@@ -7,6 +7,8 @@ let DriverSchema = new Schema({
     cpf: {type: String, required: true, max: 11},
     date_of_birth: {type: Date, require: true},
     active: {type: Boolean, require: true, default: true},
+    creation_date: {type: Date, require: true, default: new Date()},
+    modification_date: {type: Date, require: false, default: new Date()},
     vehicles: [
         {type: mongoose.Schema.Types.ObjectId,red:'Vehicle'}
     ]

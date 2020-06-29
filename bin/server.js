@@ -14,5 +14,5 @@ function normalizePort(value){
 }
 
 app.listen(port, function(){
-    console.log('App listening on port ${port}');
+    console.log('[',(new Date()),'] App listening on port ${port}');
 })
